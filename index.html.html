@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Name</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0e5ec;  /* Professional light background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Container Styling */
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            position: relative;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* Input and Label Styling */
+        label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* Button Styling */
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Output Area with Scrollbar */
+        .output {
+            background-color: #f9f9f9;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 50px;
+            max-height: 150px;  /* Set max height */
+            overflow-y: auto;   /* Enable vertical scrolling */
+            white-space: pre-wrap;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Error message */
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Watermark styling */
+        .watermark {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="watermark"></div>
+
+        <h2>Created by Sohom Sanyal</h2>
+        
+        <label for="nameInput">Enter the Text:</label>
+        <input type="text" id="nameInput" placeholder="text">
+        
+        <label for="numberInput">Number of times:</label>
+        <input type="number" id="numberInput" placeholder="number">
+        
+        <button onclick="printName()">Print Text</button>
+        
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        function printName() {
+            const name = document.getElementById('nameInput').value;
+            const number = document.getElementById('numberInput').value;
+            const outputDiv = document.getElementById('output');
+
+            if (name && number > 0) {
+                let result = '';
+                for (let i = 0; i < number; i++) {
+                    result += name + '\n';
+                }
+                outputDiv.textContent = result;
+                outputDiv.classList.remove('error');
+            } else {
+                outputDiv.textContent = 'Please enter a valid name and number.';
+                outputDiv.classList.add('error');
+            }
+        }
+    </script>
+
+</body>
+</html>
